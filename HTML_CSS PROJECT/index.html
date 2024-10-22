@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>BayG'nin Bloğu</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="navigateTo('index.html')">Ana Sayfa</a></li>
+                <li><a href="#" onclick="navigateTo('about.html')">Hakkımda</a></li>
+                <li><a href="#" onclick="navigateTo('contact.html')">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Blok BayG'ye Hoşgeldiniz</h2>
+            <p>Bloğuma hoş geldiniz! Burada kişisel yazılarımı ve deneyimlerimi paylaşacağım.</p>
+        </section>
+        <section>
+            <h2>Son Yazılar</h2>
+            <ul>
+                <li><a href="#" onclick="navigateTo('post.html')">Blog yazısı 1</a></li>
+                <li><a href="#" onclick="navigateTo('post.html')">Blog yazısı 2</a></li>
+            </ul>
+            <p>lor</p>
+            <p>lor</p>
+            <p>lor</p>
+            <p>lor</p>
+            <p>lor</p>
+            <p>lor</p>
+        </section>
+    </main>
+    <footer>
+        <p> &copy; 2024 Benim Bloğum</p> 
+    </footer>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

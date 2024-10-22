@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+
+    <style>
+        #posts{
+            display: none;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+    crossorigin="anonymous">
+    </script>
+
+    <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+    <script type="text/x-handlebars-template" id="temp">
+        <ul>
+            <li>
+                <h2>{{title}}</h2>
+                <p>{{body}}</p>
+            </li>            
+    </ul>
+    </script>
+</head>
+<body>
+    <button id="getir">Postları getir</button>
+    <button id="gonder">Postları Gönder</button>
+    <p id="mesaj"></p>
+    <ul id="posts"></ul>
+
+    <script>
+        $(document).ready(function(){
+            $('#getir').on('click',function(){
+                $.ajax({
+                    url:'https://jsonplaceholder.typicode.com/posts',
+                    type:'GET',
+                    dataType: 'json',
+                    success:function(data){
+                        let template = $('#temp').html();
+                        let binder = Handlebars.compile(template);
+                        $.each(data,(index,element)=>{
+                            let post = binder(element);
+                            //let post = $('<li>' + '<h2>' + element.title+'</h2>'+ '<p>'+ element.body +  '</p>' + '</li>');
+                            $('#posts').append(post);
+                        });
+                        $('#posts').fadeIn('slow');
+                    },
+                    error:function(hata){
+                        console.log(hata);
+                    }
+                });
+            });
+
+            $('#gonder').on('click',function(){
+                $.ajax({
+                    url:'https://jsonplaceholder.typicode.com/posts',
+                    type:'POST',
+                    data: JSON.stringify({
+                        title: 'Başlık',
+                        body: 'Yorum',
+                        userID: 2
+                    }),
+                    contentType:'application/json',
+                    success:function(data){
+                       $('#mesaj').show('fast').text('post başarıyla eklendi').hide(2000);
+                    },
+                    error:function(hata){
+                        console.log(hata);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

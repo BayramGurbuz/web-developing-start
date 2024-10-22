@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+    crossorigin="anonymous">
+    </script>
+    <style>
+
+        body{
+            font-family: Bahnschrift;
+        }
+
+        .book{
+            width: 200px;
+            height: 400px;
+            border-radius: 20px;
+            background-color: rgb(12, 48, 126);
+            float: left;
+            margin: 20px;
+            color: white;
+            padding: 20px;
+        }
+
+        ul{
+        list-style : none;
+        }
+
+        button{
+            margin-top: 30px;
+            width: 100%;
+            background-color: indianred;
+            color: white;
+
+        }
+
+        a{
+            color:white;
+        }
+
+        .aciklama{
+            display: none;
+        }
+
+        .secili{
+            background-color: rgb(198, 198, 22);
+        }
+        .animation{
+            top: 0px;
+            background-color: rgb(12, 48, 126);
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="filtre">
+        <button class="yerli">Yerli</button>
+        <button class="yabancı">Yabancı</button>
+    </div>
+    <div id="books">
+        <ul>
+            <li class="book yerli" data-fee = '20'>
+                <h2>Denizler Altına 20.000 Fersah</h2>
+                <a href="#">Açıklamayı Gizle/Göster</a>
+                <div class="aciklama">
+                    <p>Jules Verne 'İn 1870 yılında yayımlanan bu romanında, Kaptan Nemo'nun Nautilus adlı
+                        denizaltısıyla yolculuğa çıkıyoruz.
+                    </p>
+                </div>
+                <button>Show fee</button>
+            </li>
+
+            <li class="book yabancı" data-fee = '20'>
+                <h2>Denizler Altına 20.000 Fersah</h2>
+                <a href="#">Açıklamayı Gizle/Göster</a>
+                <div class="aciklama">
+                    <p>Jules Verne 'İn 1870 yılında yayımlanan bu romanında, Kaptan Nemo'nun Nautilus adlı
+                        denizaltısıyla yolculuğa çıkıyoruz.
+                    </p>
+                </div>
+                <button>Show fee</button>
+            </li>
+
+            <li class="book yerli" data-fee = '20'>
+                <h2>Denizler Altına 20.000 Fersah</h2>
+                <a href="#">Açıklamayı Gizle/Göster</a>
+                <div class="aciklama">
+                    <p>Jules Verne 'İn 1870 yılında yayımlanan bu romanında, Kaptan Nemo'nun Nautilus adlı
+                        denizaltısıyla yolculuğa çıkıyoruz.
+                    </p>
+                </div>
+                <button>Show fee</button>
+            </li>
+
+            <li class="book yabancı" data-fee = '20'>
+                <h2>Denizler Altına 20.000 Fersah</h2>
+                <a href="#">Açıklamayı Gizle/Göster</a>
+                <div class="aciklama">
+                    <p>Jules Verne 'İn 1870 yılında yayımlanan bu romanında, Kaptan Nemo'nun Nautilus adlı
+                        denizaltısıyla yolculuğa çıkıyoruz.
+                    </p>
+                </div>
+                <button>Show fee</button>
+            </li>
+
+            <li class="book" data-fee = '20'>
+                <h2>Denizler Altına 20.000 Fersah</h2>
+                <a href="#">Açıklamayı Gizle/Göster</a>
+                <div class="aciklama">
+                    <p>Jules Verne 'İn 1870 yılında yayımlanan bu romanında, Kaptan Nemo'nun Nautilus adlı
+                        denizaltısıyla yolculuğa çıkıyoruz.
+                    </p>
+                </div>
+                <button>Show fee</button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.book').on('click','button',function(){
+                let li = $(this).closest('.book');
+                let fee = li.data('fee');
+                let p = $('<p>$' + fee + ' </p>');
+                li.append(p);
+                $(this).remove();
+            });
+
+            $('#filtre').on('click','.yerli', function () {
+                $('.book').removeClass('secili');
+                $('.book').filter('.yerli').addClass('secili');
+            });
+            
+            $('#filtre').on('click','.yabancı', function () {
+                $('.book').removeClass('secili');
+                $('.book').filter('.yabancı').addClass('secili');
+            });
+
+            $('.book').on('click', 'a',function(event){
+                event.preventDefault(); //sayfanın bir anda yukarı çıkmasını engelller
+                let p = $(this).closest('.book').find('.aciklama');
+                if ($(p).is(':hidden')) {
+                    $(p).slideDown();
+                    $(this).text('Gizle');
+                } else {
+                    $(p).slideUp();
+                    $(this).text('Göster');
+                }
+            });
+
+            let tiklandiMi = false;
+            $(".book").on('click',function(){
+                if(!tiklandiMi){
+                    $(this).addClass('animation');
+                    $(this).animate({'top': '-20px'},500)
+                    tiklandiMi = true;
+                }else{
+                    $(this).animate({'top': '0px'},500)
+                    tiklandiMi = false;
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

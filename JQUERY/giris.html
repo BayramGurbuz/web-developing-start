@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+    crossorigin="anonymous">
+    </script>
+    <style>
+        li{
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <ul id="categories">
+        <li class="fav">Edebiyat
+            <ul>
+                <li>Roman</li>
+                <li>Şiir</li>
+            </ul>
+        </li>
+        <li>Araştırma</li>
+        <li>Popüler Bilim</li>
+    </ul>
+    <script>
+        $(document).ready(function(){
+            $('h1').text('Başlık');
+            $('#categories').css({'color': 'red'});
+            $('.fav').css({'font-family': 'verdana'});
+            $('#categories > li').css({'float': 'left'});
+            $('li:odd').css({'color':'blue'});
+            $('li:even').css({'color':'green'});
+
+
+        })
+    </script>
+    
+</body>
+</html
